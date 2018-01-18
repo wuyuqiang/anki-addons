@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="github-markdown.css" type="text/css" rel="stylesheet">
+</head>
+<body class="markdown-body">
+
+<p style="font-size: 36px; font-weight: bold">Power Format Pack</p>
+<div class="toc">
+<ul>
+<li><a href="#formatting-buttons">Formatting buttons</a></li>
+<li><a href="#markdown">Markdown</a><ul>
+<li><a href="#code-blocks">Code blocks</a></li>
+<li><a href="#definition-lists">Definition lists</a></li>
+<li><a href="#footnotes">Footnotes</a></li>
+<li><a href="#abbreviations">Abbreviations</a></li>
+<li><a href="#tables">Tables</a></li>
+<li><a href="#attributes">Attributes</a></li>
+</ul>
+</li>
+<li><a href="#custom-user-defined-keybindings">Custom user-defined keybindings</a></li>
+<li><a href="#disabling-unused-buttons">Disabling unused buttons</a></li>
+<li><a href="#installation">Installation</a></li>
+</ul>
+</div>
+<h2 class="heading" id="formatting-buttons">Formatting buttons</h2>
+<p>This add-on adds the following supplementary formatting buttons to Anki:</p>
+<ul>
+<li>
+<p class="formatting-button" id="code-button">a <strong>code</strong> button that will wrap selected text in a <code>&lt;code&gt;</code> (default: <kbd>Ctrl</kbd> + <kbd>,</kbd>). You can specify the CSS class you want to use in combination with <code>&lt;code&gt;</code>. For example, we have a CSS class named <code>c</code> defined in the <em>Styling</em> section of <em>Cards</em>:</p>
+<pre><code>.c {
+    font-family: droid sans mono;
+    background-color: #f2f2f2;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+</code></pre>
+<p>In the options <em>Tools &gt; Power Format Pack add-on (options) &gt; CSS
+class for &lt;code&gt; and &lt;pre&gt; code blocks</em> we can specify the
+class name, so that our <code>&lt;code&gt;</code> elements will be
+automatically transformed to <code>&lt;code class="c"&gt;</code>.</p>
+</li>
+<li>
+<p class="formatting-button" id="unordered-list-button">an <strong>unordered list</strong> button (default <kbd>Ctrl</kbd> + <kbd>[</kbd>):</p>
+<ul>
+<li>One</li>
+<li>Two</li>
+<li>Three</li>
+</ul>
+</li>
+<li>
+<p class="formatting-button" id="ordered-list-button">an <strong>ordered list</strong> button (default <kbd>Ctrl</kbd> + <kbd>]</kbd>):</p>
+<ol>
+<li>One</li>
+<li>Two</li>
+<li>Three</li>
+</ol>
+</li>
+<li>
+<p class="formatting-button" id="indent-button">an <strong>indent</strong> button (default <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
+    <kbd>]</kbd>) to indent text or lists:</p>
+<ol>
+<li>One<ul>
+<li>Two<ol>
+<li>Three</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p class="formatting-button" id="outdent-button">an <strong>outdent</strong> button (default <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
+    <kbd>[</kbd>) to outdent text or lists</p>
+</li>
+<li>
+<p class="formatting-button" id="strikethrough-button">a <strong>strikethrough</strong> button (default <kbd>Alt</kbd> + <kbd>Shift</kbd> +
+    <kbd>5</kbd>):</p>
+<p><del>strikethrough text example</del></p>
+</li>
+<li>
+<p class="formatting-button" id="pre-button">a <strong>code block</strong> button (default <kbd>Ctrl</kbd> + <kbd>.</kbd>) that creates
+    a <code>&lt;pre&gt;</code> block element around the selected element. This works the same way
+    the code button works. You can specify the CSS class you want to use in
+    combination with <code>&amp;lt;pre&amp;gt;</code> by going to <em>Tools &gt;
+    Power Format Pack add-on (options) &gt; Alter &lt;code&gt; CSS...</em></p>
+</li>
+<li>
+<p class="formatting-button" id="horizontal-rule-button">a <strong>horizontal rule</strong> button (default <kbd>Ctrl</kbd> + <kbd>H</kbd>) that
+    inserts a horizontal rule after the current position of the cursor</p>
+</li>
+<li>
+<p class="formatting-button" id="definition-list-button">a <strong>definition list</strong> button (default <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
+    <kbd>D</kbd>):</p>
+<p><dl><dt>definition term</dt><dd>definition description</dd></p>
+<p>Upon clicking the button, a popup will appear where you can enter your terms
+and descriptions.</p>
+</li>
+<li>
+<p class="formatting-button" id="table-button">a <strong>table</strong> button (default <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>3</kbd>):</p>
+<p><table>
+    <thead>
+        <tr>
+            <th>header</th>
+            <th>header</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>content</td>
+            <td>content</td>
+        </tr>
+    </tbody>
+</table></p>
+<p>Select the text you want to create a table from. This works very much the
+same as a Markdown list:</p>
+<pre><code>header1 | header2
+-|-
+elem1 | elem2
+</code></pre>
+<p>This will create a list with two columns and two rows. The <code>-|-</code> part is
+optional, but can be used to align the column to the left (<code>:-</code>), right
+(<code>-:</code>) or to the center (<code>:-:</code>). You can skip this line completely, but do
+make sure you add a pipe character <code>|</code> between elements to designate
+a border.</p>
+<p>Alternatively, if you do not select any text, upon clicking the
+<kbd>Create a table</kbd> button you will be presented with a dialog
+window asking you to specify the number of rows and columns.</p>
+<p>
+In the option menu, you can select whether you want your tables to be
+styled by the add-on (default) or if you prefer to use your own style sheet.
+</p>
+</li>
+<li>
+<p class="formatting-button" id="keyboard-button">a <strong>keyboard key</strong> button (default <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
+<kbd>K</kbd>):</p>
+<p>This will create a keyboard key, for example <kbd>Esc</kbd>. By itself,
+the text that is wrapped in <code>&lt;kbd&gt;</code> will not look any different from the
+rest of the text. You have to style it first by going to the <em>Styling</em>
+section of <em>Cards</em> and add CSS to your liking. For example:</p>
+<pre><code>kbd {
+box-shadow: inset 0px 1px 0px 0px #ffffff;
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9) );
+background-color: #f9f9f9;
+border-radius: 5px;
+border: 1px solid #dcdcdc;
+display: inline-block;
+font-size: 0.8em;
+height: 30px;
+line-height: 30px;
+padding: 0px 10px;
+text-align: center;
+text-shadow: 1px 1px 0px #ffffff;
+}
+</code></pre>
+</li>
+<li>
+<p class="formatting-button" id="hyperlink-button">a <strong>hyperlink</strong> button (default <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd>):</p>
+<p>Upon pressing the button, you will be presented with a dialog window where
+you can enter both a link and text. To unlink a hyperlink, use the unlink
+button.</p>
+</li>
+<li>
+<p class="formatting-button" id="highlight-button">a <strong>text highlight</strong> button (default <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
+    <kbd>N</kbd> to select color, <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
+    <kbd>B</kbd> to apply it):</p>
+<p>Highlight your text with colors.</p>
+</li>
+<li>
+<p class="formatting-button" id="blockquote-button">a <strong>blockquote</strong> button (default <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
+    <kbd>Y</kbd>):</p>
+<p>Cite your source distinctively from the rest of the text. You can add an
+author by putting brackets around the text:</p>
+<pre><code>Do not pray for easy lives. Pray to be stronger men. [[John F. Kennedy]]
+</code></pre>
+<blockquote>
+<p>Do not pray for easy lives. Pray to be stronger men.<br />
+<em>John F. Kennedy</em></p>
+</blockquote>
+</li>
+<li>
+<p class="formatting-button" id="alignment-button"><strong>alignment</strong> buttons:</p>
+<p>Align your text left, right, center or justified. Shortcuts are
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>L</kbd>,
+<kbd>R</kbd>, <kbd>B</kbd> and <kbd>J</kbd>, respectively.</p>
+</li>
+<li>
+<p class="formatting-button" id="heading-button">a <strong>heading</strong> button (shortcut <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>1</kbd>):</p>
+<p>You can either create a heading by prepending text with hashes: <code>#</code> for
+a <code>&lt;h1&gt;</code> heading, <code>######</code> for a <code>&lt;h6&gt;</code> heading. If you do not prepend any
+hashes, or if you select no text at all, a dialog will appear where you
+can create your own heading.</p>
+</li>
+</ul>
+<!-- end formatting buttons -->
+
+<h2 class="heading" id="markdown">Markdown</h2>
+<p>You can use Markdown to style your notes. Markdown is a text-to-HTML
+conversion tool, that lets you quicky style your notes. If you don't know
+Markdown yet, have a look at <a href="http://markdowntutorial.com/">this tutorial</a>.</p>
+<h5>Enable Markdown</h5>
+<p>Markdown is disabled by default, to keep this addon as modularised as
+possible. To enable it, go to settings and tick the checkbox next to
+"Markdown". Restart Anki to complete the process.</p>
+<h5>Using Markdown</h5>
+<p>When you click the Markdown button, your Markdown syntax will be translated
+into HTML and displayed. You are now in <em>Markdown mode</em>. Markdown mode is
+indicated by the changed background color and the warning message under the
+field you are editing. In Markdown mode, you cannot use any of the formatting
+buttons you would normally have access to. This is done to prevent any
+accidental editing of the displayed result. If you want to make changes to the
+card, first toggle the Markdown button again and go back to normal mode.</p>
+<p>However, if you absolutely need to edit the card in Markdown mode, you can
+choose to keep the buttons enabled from the options menu, by ticking the
+checkbox <em>Allow editing of rendered Markdown</em>.</p>
+<p>When you do add text to your card or alter the HTML directly in Markdown mode,
+a dialog box will appear asking whether you want to revert to your previous
+Markdown syntax, or try to incorperate the changes in your card. Be advised,
+however, that the result may lose some of your original Markdown syntax,
+especially if the original syntax was complex (footnotes, tables, code
+blocks).</p>
+<p>To make sure you always return to your original syntax when exiting Markdown
+mode, you can check the <em>Always revert back automatically to old Markdown</em>
+checkbox in the options. Doing this will never show you the warning dialog box
+and will always discard any changes made in Markdown mode.</p>
+
+<h5>How the Markdown button differs from the other buttons in this add-on</h5>
+
+<p>I recommend you use either Markdown or the rich formatting buttons, but not
+both at the same time. Markdown was designed to be a fast and simple way to
+quickly write relatively simple formatted text. As such, it won't know what to
+do with complex cards that use formatting unknown to the Markdown
+specification. So when clicking the Markdown button, it _will_ "erase"
+formatting that it does not know how to handle. You were warned.</p>
+<p>This addons supports some Markdown syntax not found in
+<a href="https://daringfireball.net/projects/markdown/">John Gruber's original
+Markdown</a>:</p>
+<h4 class="heading" id="code-blocks">Code blocks</h4>
+<p>Code blocks can be created by indenting four spaces with a white line before
+and after the code block. The syntax can be specified either by:</p>
+<pre><code>:::java
+public class Test { }
+</code></pre>
+<p>or by using:</p>
+<pre><code>```python
+def print_me(this):
+    print "Printing: ", this
+```
+</code></pre>
+<p>More (technical) details on code blocks (e.g. highlighting of lines) can be
+found on the
+<a href="https://pythonhosted.org/Markdown/extensions/code_hilite.html">Python Markdown project</a>.</p>
+<h4 class="heading" id="definition-lists">Definition lists</h4>
+<p>A definition list can be created as follows:</p>
+<pre><code>Apple
+:   Pomaceous fruit of plants of the genus Malus in
+the family Rosaceae.
+
+Orange
+:   The fruit of an evergreen tree of the genus Citrus.
+</code></pre>
+<p>Make sure there is a white line between the different definitions.</p>
+<h4 class="heading" id="footnotes">Footnotes</h4>
+<pre><code>Footnotes[^1] have a label[^@#$%] and the footnote's content.
+
+[^1]: This is a footnote content.
+[^@#$%]: A footnote on the label: "@#$%".
+</code></pre>
+<p>A footnote label must start with a caret <code>^</code> and may contain any inline text
+(including spaces) between a set of square brackets <code>[]</code>. Only the first caret
+has any special meaning.</p>
+<p>A footnote content must start with the label followed by a colon and at least
+one space. The label used to define the content must exactly match the label
+used in the body (including capitalization and white space). The content would
+then follow the label either on the same line or on the next line. The content
+may contain multiple lines, paragraphs, code blocks, blockquotes and most any
+other markdown syntax. The additional lines must be indented one level (four
+spaces or one tab).</p>
+<p>More (technical) details on footnotes (e.g. multiple blocks of content) can be
+found on the
+<a href="https://pythonhosted.org/Markdown/extensions/footnotes.html">Python Markdown project</a>.</p>
+<h4 class="heading" id="abbreviations">Abbreviations</h4>
+<p>The Markdown syntax:</p>
+<pre><code>The HTML specification
+is maintained by the W3C.
+
+*[HTML]: Hyper Text Markup Language
+*[W3C]:  World Wide Web Consortium
+</code></pre>
+<p>will be rendered as:</p>
+<pre><code>&lt;p&gt;The &lt;abbr title="Hyper Text Markup Language"&gt;HTML&lt;/abbr&gt; specification
+is maintained by the &lt;abbr title="World Wide Web Consortium"&gt;W3C&lt;/abbr&gt;.&lt;/p&gt;
+</code></pre>
+<h4 class="heading" id="tables">Tables</h4>
+<p>Tables have the same syntax as described above for the table button. Tables
+can be styled with CSS in your stylesheet.</p>
+<h4 class="heading" id="attributes">Attributes</h4>
+<p>An example attribute list might look like this:</p>
+<pre><code>{: #someid .someclass somekey='some value' }
+</code></pre>
+<p>A word which starts with a hash (<code>#</code>) will set the id of an element.</p>
+<p>A word which starts with a dot (<code>.</code>) will be added to the list of classes
+assigned to an element.</p>
+<p>A key/value pair (<code>somekey='some value'</code>) will assign that pair to the element.</p>
+<p>Be aware that while the dot syntax will add to a class, using key/value pairs
+will always override the previously defined attribute. Consider the following:</p>
+<pre><code>{: #id1 .class1 id=id2 class="class2 class3" .class4 }
+</code></pre>
+<p>The above example would result in the following attributes being defined:</p>
+<pre><code>id="id2" class="class2 class3 class4"
+</code></pre>
+<p>Say you have a CSS class:</p>
+<pre><code>.large { font-size: 32px; }
+</code></pre>
+<p>You can add this class to a paragraph like this:</p>
+<pre><code>A person often meets his destiny on the road he took to avoid it.
+{: .large}
+</code></pre>
+<p>More (technical) details on attributes (e.g. block-level and inline
+attributes) can be found on the <a href="https://pythonhosted.org/Markdown/extensions/attr_list.html">Python Markdown
+project</a>.</p>
+<h2 class="heading" id="custom-user-defined-keybindings">Custom user-defined keybindings</h2>
+<p>You can change the default keybindings to your liking by going to <em>Tools &gt; Power Format Pack add-on (options) &gt; Keybindings...</em> You will be presented with a table view of all available functionality on the left and the associated keyboard shortcuts on the right. To change a particular keybinding, double click on the shortcut and press the desired keyboard combination.</p>
+<p>Be aware that all keyboard combinations will be accepted, although some of them won't actually work in practice. If you assign the keyboard shortcut 'A' to a certain functionality, for example, the shortcut won't actually do anything.</p>
+<p>Also keep in mind that there is no check for duplicate keybindings. This means that when a keybinding is already taken by either your OS, Anki, this add-on, or some other running program, the result is undefined.</p>
+<p>You can sort either on functionality ('Action') or keybindings by clicking on the appropriate header columns.</p>
+<p>If you want to revert to the default keybindings provided by Power Format Pack, click the 'Restore Defaults' button. You can undo any changes you made and keep the dialog window open by pressing the 'Reset' button. 'Cancel' will do the same but will also close the window. Lastly, when you click 'Save', the dialog window will close and your changes will be applied.</p>
+<h2 class="heading" id="disabling-unused-buttons">Disabling unused buttons</h2>
+<p id="disabling-unused-buttons-content">The buttons can be enabled or disabled individually in <em>Tools &gt; Power Format Pack add-on (options)</em>, so feel free to disable the buttons you don't use.</p>
+<h2 class="heading" id="installation">Installation</h2>
+<p id="installation-content">The preferred way to install is using the
+<a href="https://ankiweb.net/shared/info/162313389">Anki add-on site</a> way by copying the
+addon code (162313389) into Anki (<em>Tools &gt; Add-ons &gt; Browse &amp; Install...</em>).</p>
+</body>
+</html>
