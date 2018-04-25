@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License     #
 # along with this program; if not, see <http://www.gnu.org/licenses/>.  #
 #########################################################################
-MAXHEIGHTPX = 200
+MAXHEIGHTPX = 100
 
 from aqt import editor
 
 oldImgStyle = "img { max-width: 90%%; }"
 newImgStyle = "img { max-width: 90%%%%; max-height: %spx }" % MAXHEIGHTPX
 
-# editor._html = editor._html.replace(oldImgStyle, newImgStyle)
+editor._html = editor._html.replace(oldImgStyle, newImgStyle)

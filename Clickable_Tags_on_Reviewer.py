@@ -136,4 +136,4 @@ def new_renderPreview(self, cardChanged=False,_old=None):
         self._previewWeb._linkHandler=lambda url: tagClicklinkHandler(self,url)
         self._previewWeb.setLinkHandler(self._previewWeb._linkHandler)
 
-Browser._renderPreview=wrap(Browser._renderPreview, new_renderPreview, "around")
+# Browser._renderPreview=wrap(Browser._renderPreview, new_renderPreview, "around")

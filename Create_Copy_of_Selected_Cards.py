@@ -70,6 +70,7 @@ def copyCards(nids):
     # Reset collection and main window
     mw.col.reset()
     mw.reset()
+    mw.progress.finish()
     
     
 def setupMenu(browser):

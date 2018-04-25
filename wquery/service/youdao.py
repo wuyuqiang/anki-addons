@@ -79,7 +79,7 @@ class Youdao(WebService):
         audio_url = u'http://dict.youdao.com/dictvoice?audio={}&type=1'.format(
             self.word)
         if youdao_download_mp3:
-            filename = u'_youdao_{}_uk.mp3'.format(self.word)
+            filename = u'youdao_{}_uk.mp3'.format(self.word)
             if self.download(audio_url, filename):
                 return self.get_anki_label(filename, 'audio')
         return audio_url
@@ -89,7 +89,7 @@ class Youdao(WebService):
         audio_url = u'http://dict.youdao.com/dictvoice?audio={}&type=2'.format(
             self.word)
         if youdao_download_mp3:
-            filename = u'_youdao_{}_us.mp3'.format(self.word)
+            filename = u'youdao_{}_us.mp3'.format(self.word)
             if self.download(audio_url, filename):
                 return self.get_anki_label(filename, 'audio')
         return audio_url

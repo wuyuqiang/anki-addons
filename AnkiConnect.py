@@ -422,8 +422,8 @@ class AnkiBridge:
             if name in note:
                 note[name] = value
 
-        if not note.dupeOrEmpty():
-            return note
+#        if not note.dupeOrEmpty():
+        return note
 
 
     def addTags(self, notes, tags, add=True):

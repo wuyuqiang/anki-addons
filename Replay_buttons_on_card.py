@@ -30,6 +30,9 @@ sound_re = ur"\[sound:(.*?)\]"
 
 hide_class_name = u'browserhide'
 
+import Log
+
+LOG = Log.getLogger(__name__)
 
 def svg_css(Card):
     """Add the svg button style to the card style"""
@@ -71,7 +74,7 @@ def play_button_filter(
             title = u"Replay"
         else:
             title = sound.group(1)
-        return u"""{orig}<a href='javascript:py.link("ankiplay{fn}");' \
+        return u"""{orig}<a href="javascript:void(0)" onclick="py.link('ankiplay{fn}');" \
 title="{ttl}" class="replaybutton browserhide"><span><svg viewBox="0 0 32 32">\
 <polygon points="11,25 25,16 11,7"/>Replay</svg></span></a>\
 <span style="display: none;">&#91;sound:{fn}&#93;</span>""".format(

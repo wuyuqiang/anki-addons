@@ -375,11 +375,16 @@ class CustomGenerator(Dialog):
             filename = self._browser.mw.col.media.addFile(path)
             dest = item['dest']
             note[dest] = self._accept_next_output(note[dest], filename, write_mode)
-            proc['counts']['okay'] += 1
             note.flush()
+
+            proc['counts']['okay'] += 1
 
         def fail(exception):
             """Count the failure and the unique message."""
+            error_filename = "_w_custom_error.mp3"
+            dest = item['dest']
+            note[dest] = self._accept_next_output(note[dest], error_filename, write_mode)
+            note.flush()
 
             proc['counts']['fail'] += 1
 
