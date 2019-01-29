@@ -22,4 +22,4 @@ def matureCheck(self, card, ease):
     f.flush()
     return True
 
-Scheduler.answerCard = wrap(Scheduler.answerCard, matureCheck)
+#Scheduler.answerCard = wrap(Scheduler.answerCard, matureCheck)

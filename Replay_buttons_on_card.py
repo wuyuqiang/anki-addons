@@ -71,7 +71,8 @@ def play_button_filter(
         the file name on the answer.
         """
         if 'q' == qa_type:
-            title = u"Replay"
+            # title = u"Replay"
+            title = sound.group(1)
         else:
             title = sound.group(1)
         return u"""{orig}<a href="javascript:void(0)" onclick="py.link('ankiplay{fn}');" \

@@ -27,15 +27,24 @@ shortcut = 'Ctrl+Q'
 ###################################################
 
 
+import Log
+
+LOG = Log.getLogger("wordquery")
+
 def start_here():
     import wquery
     wquery.config.read()
+    LOG.debug("read_start")
+
     if not wquery.have_setup:
         wquery.setup_options_menu()
         wquery.customize_addcards()
         wquery.setup_browser_menu()
         wquery.setup_context_menu()
+        LOG.debug("have_setup")
     # wquery.start_services()
     wquery.set_shortcut(shortcut)
 
+
+LOG.debug("profileLoaded")
 addHook("profileLoaded", start_here)

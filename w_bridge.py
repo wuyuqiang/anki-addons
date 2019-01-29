@@ -13,6 +13,18 @@ from aqt.webview import AnkiWebView
 LOG = Log.getLogger(__name__)
 
 
+def launchHttpProxy():
+    import urllib2
+
+    opener = urllib2.build_opener(
+                    urllib2.HTTPHandler(),
+                    urllib2.HTTPSHandler(),
+                    urllib2.ProxyHandler({'https': 'http://localhost:1087'}))
+    urllib2.install_opener(opener)
+
+
+launchHttpProxy()
+
 def new_bridge(cmd):
     # LOG.debug("new_bridge cmd: %s." % cmd)
     str_result = ""
@@ -47,9 +59,11 @@ if (currentField) {
 }
 """
 
+
 def insertEmptyImage(self):
     LOG.debug("ddddd")
     self.addMedia(u"_w_placeholder.png")
+
 
 def addInsertButtons(self):
     self._addButton("insert placeholder image", lambda s=self: insertEmptyImage(self), text="IPI", tip="insert placeholder image", size=True)

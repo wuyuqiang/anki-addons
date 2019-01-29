@@ -70,12 +70,22 @@ class Baidu(Service):
     def run(self, text, options, path):
         """Downloads from Baidu directly to an MP3."""
 
+        # self.net_download(
+        #     path,
+        #     [
+        #         ('http://tts.baidu.com/text2audio',
+        #          dict(text=subtext, lan=options['voice'], ie='UTF-8'))
+        #         for subtext in self.util_split(text, 300)
+        #     ],
+        #     require=dict(mime='audio/mp3', size=256),
+        # )
+
         self.net_download(
             path,
             [
-                ('http://tts.baidu.com/text2audio',
-                 dict(text=subtext, lan=options['voice'], ie='UTF-8'))
+                ('http://fanyi.baidu.com/gettts',
+                 dict(text=subtext, lan=options['voice'], ie='UTF-8', spd='3', source='web'))
                 for subtext in self.util_split(text, 300)
             ],
-            require=dict(mime='audio/mp3', size=256),
+            require=dict(mime='audio/mpeg', size=256),
         )

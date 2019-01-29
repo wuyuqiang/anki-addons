@@ -15,6 +15,9 @@ from ..utils import ignore_exception
 bcz_download_mp3 = True
 bcz_download_img = True
 
+def ffmpeg2mp3(input, output):
+    cmd = "ffmpeg -i "+input+" -acodec libmp3lame " + output
+    os.system(cmd)
 
 @register(u'百词斩')
 class Baicizhan(WebService):
@@ -67,7 +70,8 @@ class Baicizhan(WebService):
             filename = url[url.rindex('/') + 1:]
             if self.download(url, filename):
                 return self.get_anki_label(filename, 'img')
-        return self.get_anki_label(url, 'img')
+        # return self.get_anki_label(url, 'img')
+        return ""
 
     @export(u'象形', 3)
     def fld_df(self):
@@ -76,20 +80,57 @@ class Baicizhan(WebService):
             filename = url[url.rindex('/') + 1:]
             if self.download(url, filename):
                 return self.get_anki_label(filename, 'img')
-        return self.get_anki_label(url, 'img')
+        # return self.get_anki_label(url, 'img')
+        return ""
 
-    @export(u'中文释义', 6)
+    @export(u'中文释义', 4)
     def fld_mean(self):
         return self._get_field('mean_cn')
 
-    @export(u'英文例句', 4)
+    @export(u'英文例句', 5)
     def fld_st(self):
         return self._get_field('st')
 
-    @export(u'例句翻译', 5)
+    @export(u'例句翻译', 6)
     def fld_sttr(self):
         return self._get_field('sttr')
 
-    @export(u'单词tv', 7)
+    def down_st_audio(self, imgurl):
+        baseurl = imgurl[:imgurl.rindex('/') + 1]
+        imgname = imgurl[imgurl.rindex('/') + 1:]
+        aacname = "sa" + imgname[1:-3] + "aac"
+        url = baseurl + aacname
+        if self.download(url, aacname):
+            with open(aacname, 'rb') as f:
+                if f.read().strip() == '{"error":"Document not found"}':
+                    res = ''
+                else:
+                    mp3name = aacname[:-3] + "mp3"
+                    ffmpeg2mp3(aacname, mp3name)
+                    if os.path.exists(mp3name):
+                        os.remove(aacname)
+                    res = self.get_anki_label(mp3name, 'audio')
+            if not res:
+                os.remove(aacname)
+            return res
+        return ""
+
+    @export(u'例句发音', 7)
+    def fld_st_audio(self):
+        imgurl = self._get_field('img')
+        if imgurl and bcz_download_mp3:
+            res = self.down_st_audio(imgurl)
+            if res == "":
+                imgurl = self._get_field('df')
+                if imgurl:
+                    res = self.down_st_audio(imgurl)
+            return res
+        return ""
+
+    @export(u'单词tv', 8)
     def fld_tv_url(self):
-        return self.get_anki_label(self._get_field('tv'), 'video')
+        tv = self._get_field('tv')
+        if tv:
+            return self.get_anki_label(self._get_field('tv'), 'video')
+        return ""
+
